@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="LabTestQ1.View.Q1"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LabTestQ1.View">
+    <ContentView.Content>
+        <StackLayout>
+        <Grid VerticalOptions="CenterAndExpand"
+              RowDefinitions="*" ColumnDefinitions="auto,*"
+              Margin="20">
+            <Label x:Name="label1" Grid.Row="0"
+                Grid.Column="0"
+                       HorizontalOptions="CenterAndExpand"/>
+            <Slider x:Name="slider1" Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"/>
+            <Label x:Name="label2" Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="CenterAndExpand"/>
+           
+        </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

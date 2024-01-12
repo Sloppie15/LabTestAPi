@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:LabTestQ1.Converters"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:viewmodels="clr-namespace:LabTestQ1.ViewModels"
+             x:Class="LabTestQ1.View.Question2"
+             x:DataType="viewmodels:RegistrationViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ValueToTextConverter x:Key="ValueToTextConverter"/>
+            <converters:ValueToColorConverter x:Key="ValueToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Margin="40,0" VerticalOptions="CenterAndExpand">
+        <Entry x:Name="PhoneEntry"
+               HorizontalTextAlignment="Center"
+               Placeholder="0112223333"
+               Keyboard="Telephone"
+               HorizontalOptions="FillAndExpand"
+               Text="{Binding PhoneNumber}">
+            
+            <Entry.Behaviors>
+                <behaviors:MaskedBehavior Mask="XXXXXXXXXX"/>
+            </Entry.Behaviors>
+
+        </Entry>
+        <Label Text="Invalid Phone Number"
+           TextColor="Red"
+           IsVisible="{Binding IsInvalidPhoneNumber}"
+           HorizontalOptions="Start" />
+        <Entry x:Name="PasswordEntry"
+               HorizontalTextAlignment="Center"
+               IsPassword="True"
+               Placeholder="Password"
+               HorizontalOptions="FillAndExpand"
+               Text="{Binding Password}"/>
+        <Label Text="Password length should be greater than 5"
+           TextColor="Red"
+           IsVisible="{Binding IsInvalidPassword}"
+           HorizontalOptions="Start" />
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Center"
+                     Margin="0, 15">
+            <CheckBox x:Name="TermsAndConditionsCheckbox"
+                      HorizontalOptions="Start"
+                      IsChecked="{Binding TermsAccepted}"/>
+            <Label Text="I have read the terms and conditions"
+                   TextColor="Blue"
+                   FontSize="Small"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleTermsCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+        <Button x:Name="RegisterButton"
+                Text="Register"
+                FontSize="Medium"
+                CornerRadius="20"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Command="{Binding RegisterCommand}"
+                IsEnabled="{Binding IsFormValid}" />
+    </StackLayout>
+</ContentPage>
